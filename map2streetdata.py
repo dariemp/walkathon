@@ -1,7 +1,30 @@
 #!/usr/bin/env python
+import math
 from xml.dom.minidom import parse
-from geopy.distance import distance
-from math import isclose
+from geopy.distance import distance as geo_distance
+
+LOCAL_COORD_ORIGIN_LATITUD = 50.8
+LOCAL_COORD_ORIGIN_LONGITUD = -114.3
+
+
+def earth_coord_2_local_coord(lat, lon):
+    x = geo_distance((lat, lon), (lat, LOCAL_COORD_ORIGIN_LONGITUD))
+    y = geo_distance((lat, lon), (LOCAL_COORD_ORIGIN_LATITUD, lon))
+    return x, y
+
+
+def local_coord_2_earth_coord(x, y):
+    # FIXME : wasn't working
+    return lat, lon
+
+
+def cartesian_distance(pointA, pointB):
+    x1 = pointA[0]
+    y1 = pointA[1]
+    x2 = pointB[0]
+    y2 = pointB[1]
+    return math.sqrt( (x2-x1)**2 + (y2-y1)**2 )
+
 
 def get_intersection(way1_nodes, way2_nodes, node_data):
     for i in range(len(way1_nodes)-1):
@@ -36,8 +59,8 @@ def calculate_intersection(line1_point1, line1_point2, line2_point1, line2_point
     if s >= 0 and t <= 1:
         x = x1 + s*(x2-x1)
         y = y1 + s*(y2-y1)
-        assert isclose(x, x3 + t*(x4-x3)), 'Wrong intersection calculation'
-        assert isclose(y, y3 + t*(y4-y3)), 'Wrong intersection calculation'
+        assert math.isclose(x, x3 + t*(x4-x3)), 'Wrong intersection calculation'
+        assert math.isclose(y, y3 + t*(y4-y3)), 'Wrong intersection calculation'
         return x, y
     return None
 
