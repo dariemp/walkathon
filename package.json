@@ -1,0 +1,24 @@
+{
+  "name": "walkathon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend tools for Walkathon: find nice walking routes in Calgary",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "firebase-admin": "^14.5.0",
+    "firebase-functions": "^7.4.0"
+  },
+  "devDependencies": {
+    "firebase-tools": "^15.31.0"
+  },
+  "overrides": {
+    "gaxios": {
+      "uuid": "^11.1.1"
+    },
+    "@google-cloud/pubsub": {
+      "@opentelemetry/core": "^2.8.0"
+    }
+  }
+}

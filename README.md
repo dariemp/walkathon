@@ -5,3 +5,7 @@ We use a map from OpenStreetMap.org to gather data of possible routes by creatin
 
 # Tools
 **map2streetdata.py**: converts a map from OpenStreetMap.org into a nicer format that we can query from Firebase
+
+# Setup
+- Python 3.10+: `pip install -r requirements.txt`, then `python map2streetdata.py`
+- Node.js 22+ (Firebase): `npm ci`
